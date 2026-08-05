@@ -1,4 +1,2 @@
-Rear full-body fashion product photography of a compression rave bodysuit on a fit model.
-Visible center-back invisible zipper path, back panel mapping, matte midnight-teal body, selective cyan reflective seam edges, black binding, clean strap or neck finish.
-Clean studio, soft key + rim, neutral dark backdrop, sharp construction detail, catalog style.
-No watermark, no logo text, no extra limbs, no brand names.
+rear full-body fashion product photograph of a compression rave bodysuit, center-back invisible zipper path readable, back panel mapping clear, matte midnight-teal nylon-spandex, selective electric-cyan reflective edges on seams, black binding, clean neck finish, fit model standing relaxed, clean dark studio, soft key plus cyan rim, sharp construction detail, editorial ravewear catalog, no watermark no logo text
+--ar 3:4 --stylize 100 --style raw --v 6.1

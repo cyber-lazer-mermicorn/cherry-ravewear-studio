@@ -2,49 +2,42 @@
 
 **Flagship passion vertical — Cyber Lazer Mermicorn**
 
-> Cherry designs. Partners sew. Packages are real.
+> Cherry designs. Partners sew. Packages are real.  
+> Beat → light → color → body → joy.
 
 ## 1. What this project does
-Turns ravewear ideas into structured, manufacturer-ready design packages: concept, silhouette, materials, colorways, multi-view prompts, tech-pack draft, product copy, and honest uncertainty.
+Turns ravewear ideas into manufacturer-ready design packages and floor-true image systems — including Midjourney calibration for catalog, campaign, and respectful psychedelic-spiritual feeling.
 
 ## 2. Who it is for
-Cherry (creative direction), production partners (execution), and portfolio reviewers who need proof of process—not vibes only.
+Cherry, production partners, and people who know the floor.
 
 ## 3. What exists today
-- Design package schema (`schemas/design-package.schema.json`)
-- Drop protocol + full workflow
-- Prompt library conventions
-- Tech-pack draft template
-- **DROP001 — Neon Tide** with first package **RW-DROP001-001 Tide Bodysuit** (mockup_draft)
+- Design package schema + DROP001 **Neon Tide**
+- **RW-DROP001-001 Tide Bodysuit** package + prompts
+- Midjourney calibration:
+  - [CALIBRATION.md](docs/midjourney/CALIBRATION.md)
+  - [PROMPT_BANK.md](docs/midjourney/PROMPT_BANK.md)
+  - [PSYCHEDELIC_SPIRIT_GUIDE.md](docs/midjourney/PSYCHEDELIC_SPIRIT_GUIDE.md)
 
 ## 4. What is planned
-Mockup generation, partner tech-pack pass, two more DROP001 pieces, then campaign/listing only when the path is real.
+Selected renders in `assets/`, partner tech-pack pass, more DROP001 pieces.
 
 ## 5. What it does not claim
-- Cherry does **not** sew garments
-- No affiliation with event brands or third-party labels
+- Cherry does not sew
+- No fake sacred appropriation
 - No retail inventory yet
-- No guaranteed manufacturer acceptance
 
-## 6. First proof artifact
-`collections/DROP001/packages/RW-DROP001-001` — Tide Bodysuit design package (JSON + human brief + four view prompts).
+## 6. First proof
+`collections/DROP001/packages/RW-DROP001-001` + Midjourney prompt set.
 
-## 7. Shared Mermicorn services
-- Graphics: mermicorn-graphic-ai
-- Commerce packaging: mermicorn-commerce-ai
-- Boot / contract: mermicorn-mega-boot + mermicorn-grove
+## 7. Shared services
+mermicorn-graphic-ai · mermicorn-commerce-ai · mermicorn-grove
 
-## 8. Private by design
-Unpublished masters, partner pricing, personal measurements, and credentials stay private.
-
-## Quick start
-1. Read `docs/WORKFLOW.md` and `docs/DROP_PROTOCOL.md`
-2. Open `collections/DROP001/`
-3. Validate package JSON against `schemas/design-package.schema.json`
-4. Generate visuals from `prompts/` using the library rules
+## 8. Private
+Masters, partner pricing, measurements, credentials.
 
 ## Rights
-Proprietary. Controlling instrument: [mermicorn-grove/LICENSE](https://github.com/cyber-lazer-mermicorn/mermicorn-grove/blob/main/LICENSE). See [RIGHTS.md](./RIGHTS.md).
+Proprietary — [mermicorn-grove/LICENSE](https://github.com/cyber-lazer-mermicorn/mermicorn-grove/blob/main/LICENSE)
 
 ---
 *Deals • Design • Games • Collectibles • Commerce • AI*

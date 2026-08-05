@@ -1,4 +1,2 @@
-True profile full-body fashion product photography of a compression rave bodysuit on a fit model.
-Show garment depth: diagonal tidal panels, leg cut height for dance security, matte midnight-teal body, cyan reflective edge catch on seams, power-mesh insert reading clearly.
-Clean studio, soft key + rim, neutral dark backdrop, sharp fabric detail, catalog style.
-No watermark, no logo text, no deformed anatomy, no brand names.
+true profile full-body fashion product photograph of a compression rave bodysuit, matte midnight-teal body, diagonal tidal panels visible in depth, electric-cyan reflective seam edges, power-mesh insert, leg cut height secure for dance, fit model in relaxed profile stance, clean dark studio, soft key light plus cyan rim, sharp fabric detail, editorial ravewear catalog, no watermark no logo text
+--ar 3:4 --stylize 100 --style raw --v 6.1

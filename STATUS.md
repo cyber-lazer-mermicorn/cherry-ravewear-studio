@@ -5,20 +5,22 @@
 
 ## What is real
 - Design package JSON Schema
-- Drop protocol and workflow docs
-- Prompt library structure
-- Tech-pack draft template
-- DROP001 "Neon Tide" collection scaffold
-- RW-DROP001-001 Tide Bodysuit package (mockup_draft) with four view prompts and honest uncertainty list
+- Drop protocol and workflow
+- **Midjourney calibration system** (`docs/midjourney/`)
+  - CALIBRATION.md — floor-true rules, params, ethics
+  - PROMPT_BANK.md — catalog, floor, afterglow recipes
+  - PSYCHEDELIC_SPIRIT_GUIDE.md — community-respectful spirit layer
+- DROP001 Neon Tide + RW-DROP001-001 package
+- MJ-ready prompts: front, side, back, detail, floor, afterglow
 
 ## What is not real yet
-- Generated image assets in assets/
+- Final selected renders committed under assets/
 - Manufacturer partner agreement
-- Sample measurements / graded sizes
+- Sample measurements
 - Retail pricing
-- Second and third DROP001 pieces
 
 ## Next
-1. Generate public-safe mockups from the four prompts
-2. Partner tech-pack read
-3. RW-DROP001-002 in the same visual language
+1. Generate and select renders from the six prompts
+2. Commit public-safe previews to assets/
+3. Partner tech-pack read
+4. RW-DROP001-002

@@ -1,3 +1,2 @@
-Tight detail crop of rave bodysuit construction: junction of matte compression fabric, power mesh, and thin electric-cyan reflective edge line.
-Macro-readable seam quality, fabric hand, reflective edge under soft studio light with slight LED-cyan kiss.
-No watermark, no logo text, no brand names.
+macro detail photograph of rave bodysuit construction, junction of matte midnight-teal compression fabric and power mesh with thin electric-cyan reflective edge line, soft studio light with single LED cyan kiss on the reflective edge, fabric hand and seam quality visible, technical catalog still, no watermark no logo text
+--ar 1:1 --stylize 80 --style raw --v 6.1
