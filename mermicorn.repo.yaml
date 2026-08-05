@@ -5,15 +5,14 @@ display_name: Cherry Ravewear Studio
 owner: cherry
 lane: passion-commerce
 visibility: public
-status: foundation
+status: building
 
 purpose:
-  problem: Turn creative ravewear concepts into production-ready collections.
+  problem: Turn ravewear concepts into manufacturer-ready design packages without false production claims.
   audience:
-    - customers
-    - sewing contractors
-    - manufacturers
-    - creative employers
+    - Cherry
+    - production partners
+    - portfolio reviewers
 
 shared_services:
   boot: mermicorn-mega-boot
@@ -24,14 +23,16 @@ shared_services:
 
 privacy:
   public:
-    - portfolio_samples
-    - sanitized_case_studies
-    - templates
+    - sanitized_mockups
+    - design_packages
+    - prompts
+    - collection_notes
   private:
-    - vendor_quotes
-    - customer_information
-    - unpublished_source_files
+    - unpublished_masters
+    - partner_pricing
+    - personal_measurements
+    - credentials
 
 first_proof:
-  artifact: drop-001-production-and-launch-pack
-  status: planned
+  artifact: RW-DROP001-001 Tide Bodysuit design package
+  status: in-progress

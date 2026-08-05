@@ -1,0 +1,113 @@
+{
+  "package_id": "RW-DROP001-001",
+  "collection": {
+    "id": "DROP001",
+    "name": "Neon Tide",
+    "season": "2026 exploratory",
+    "theme": "Bioluminescent night-ocean energy"
+  },
+  "concept": {
+    "title": "Tide Bodysuit",
+    "statement": "A compression bodysuit with tidal panel mapping and controlled reflective finish so movement reads as light moving across water under club LEDs.",
+    "mood": ["bioluminescent", "tidal", "sharp", "nocturnal"],
+    "inspiration_notes": "Ocean glow at night without literal mermaid costume language. Architecture of waves as panel seams."
+  },
+  "silhouette": {
+    "category": "bodysuit",
+    "fit": "compression",
+    "key_lines": [
+      "high neck optional convertible",
+      "diagonal tidal panels from left shoulder to right hip",
+      "leg cut that stays secure in motion",
+      "center-back invisible zipper"
+    ],
+    "coverage_notes": "Full torso coverage; leg height set for dance security over pure minimalism."
+  },
+  "palette": {
+    "primary": ["deep midnight teal", "black"],
+    "accent": ["electric cyan", "soft violet"],
+    "neutrals": ["matte black binding"],
+    "finish": ["matte", "reflective", "mesh"]
+  },
+  "materials": {
+    "primary_fabric": "medium-compression nylon/spandex matte",
+    "secondary_fabric": "power mesh for strategic panels",
+    "trims": ["matte elastic binding", "invisible zipper"],
+    "hardware": [],
+    "notes": "Reflective ink or reflective tape only on selected panel edges so effect is directional under LED, not full chrome."
+  },
+  "colorways": [
+    {
+      "name": "Abyss",
+      "description": "Midnight teal body, cyan reflective edge lines, black binding",
+      "hex_hints": ["#0A2A32", "#00E5FF", "#0B0B0B"]
+    },
+    {
+      "name": "Reef",
+      "description": "Black body, violet mesh inserts, cyan edge catch",
+      "hex_hints": ["#0B0B0B", "#7A5CFF", "#00E5FF"]
+    },
+    {
+      "name": "Foam",
+      "description": "Near-black body, pale cyan mesh, soft white-reflective micro edge",
+      "hex_hints": ["#101418", "#A8F0FF", "#E8FFFF"]
+    }
+  ],
+  "views": {
+    "front": {
+      "prompt_ref": "collections/DROP001/prompts/RW-DROP001-001-front.txt",
+      "notes": "Full front, arms relaxed, tidal diagonals readable",
+      "asset_path": null
+    },
+    "side": {
+      "prompt_ref": "collections/DROP001/prompts/RW-DROP001-001-side.txt",
+      "notes": "True profile, panel depth and leg cut clear",
+      "asset_path": null
+    },
+    "back": {
+      "prompt_ref": "collections/DROP001/prompts/RW-DROP001-001-back.txt",
+      "notes": "Zip path and back panel mapping",
+      "asset_path": null
+    },
+    "detail": {
+      "prompt_ref": "collections/DROP001/prompts/RW-DROP001-001-detail.txt",
+      "notes": "Reflective edge + mesh junction crop",
+      "asset_path": null
+    }
+  },
+  "production": {
+    "difficulty": "intermediate",
+    "estimated_sew_hours": null,
+    "construction_notes": "Panel-heavy; reflective application method must be confirmed with partner (ink vs tape vs laminate).",
+    "open_questions": [
+      "Preferred reflective method that survives sweat and wash?",
+      "Minimum order for three colorways?",
+      "Can power mesh and compression body share a stable seam without pop at hip diagonal?"
+    ],
+    "partner_ready": false
+  },
+  "copy": {
+    "product_name": "Tide Bodysuit",
+    "short": "Compression rave bodysuit with tidal panels and controlled LED-reactive edges.",
+    "long": "Tide is built for movement under club light. Diagonal panels map like current across the body. Matte compression keeps the silhouette sharp; selective reflective edges catch cyan and violet LEDs without turning the whole suit into a mirror. Designed by Cherry. Sewn by partners.",
+    "social_hooks": [
+      "Tidal lines. Controlled glow.",
+      "Built for the floor, not the filter.",
+      "Design by Cherry. Made with partners."
+    ],
+    "care": "Cold wash, hang dry, avoid high heat on reflective edges (method TBD with manufacturer)."
+  },
+  "status": "mockup_draft",
+  "rights": {
+    "owner": "Cherry | Cyber Lazer Mermicorn",
+    "license_ref": "mermicorn-grove/LICENSE",
+    "ai_assisted": true,
+    "notes": "Concept and direction by Cherry. Visuals AI-assisted under her direction."
+  },
+  "uncertainty": [
+    "Reflective process not yet manufacturer-confirmed",
+    "Sample measurements not yet graded",
+    "Retail price band not set",
+    "Asset renders not yet generated into assets/"
+  ]
+}

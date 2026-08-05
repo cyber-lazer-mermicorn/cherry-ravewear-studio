@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mermicorn.local/schemas/design-package.schema.json",
+  "title": "Mermicorn Ravewear Design Package",
+  "type": "object",
+  "required": [
+    "package_id",
+    "collection",
+    "concept",
+    "silhouette",
+    "palette",
+    "materials",
+    "colorways",
+    "views",
+    "production",
+    "copy",
+    "status",
+    "rights"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "package_id": {
+      "type": "string",
+      "pattern": "^RW-[A-Z0-9]+-[0-9]{3}$",
+      "description": "e.g. RW-DROP001-001"
+    },
+    "collection": {
+      "type": "object",
+      "required": ["id", "name", "season"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "season": { "type": "string" },
+        "theme": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "concept": {
+      "type": "object",
+      "required": ["title", "statement", "mood"],
+      "properties": {
+        "title": { "type": "string", "minLength": 3 },
+        "statement": { "type": "string", "minLength": 40 },
+        "mood": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 2
+        },
+        "inspiration_notes": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "silhouette": {
+      "type": "object",
+      "required": ["category", "fit", "key_lines"],
+      "properties": {
+        "category": {
+          "type": "string",
+          "enum": [
+            "bodysuit",
+            "crop_top",
+            "bralette",
+            "skirt",
+            "shorts",
+            "pants",
+            "dress",
+            "cape",
+            "harness",
+            "set",
+            "accessory",
+            "outerwear",
+            "other"
+          ]
+        },
+        "fit": {
+          "type": "string",
+          "enum": ["compression", "fitted", "relaxed", "oversized", "adjustable"]
+        },
+        "key_lines": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "coverage_notes": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "palette": {
+      "type": "object",
+      "required": ["primary", "accent"],
+      "properties": {
+        "primary": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "accent": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "neutrals": { "type": "array", "items": { "type": "string" } },
+        "finish": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "matte",
+              "gloss",
+              "metallic",
+              "iridescent",
+              "holographic",
+              "reflective",
+              "sheer",
+              "velvet",
+              "mesh"
+            ]
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "materials": {
+      "type": "object",
+      "required": ["primary_fabric", "notes"],
+      "properties": {
+        "primary_fabric": { "type": "string" },
+        "secondary_fabric": { "type": "string" },
+        "trims": { "type": "array", "items": { "type": "string" } },
+        "hardware": { "type": "array", "items": { "type": "string" } },
+        "notes": { "type": "string", "minLength": 10 }
+      },
+      "additionalProperties": false
+    },
+    "colorways": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["name", "description"],
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "hex_hints": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    },
+    "views": {
+      "type": "object",
+      "required": ["front", "side", "back", "detail"],
+      "properties": {
+        "front": { "$ref": "#/$defs/view_note" },
+        "side": { "$ref": "#/$defs/view_note" },
+        "back": { "$ref": "#/$defs/view_note" },
+        "detail": { "$ref": "#/$defs/view_note" },
+        "movement": { "$ref": "#/$defs/view_note" }
+      },
+      "additionalProperties": false
+    },
+    "production": {
+      "type": "object",
+      "required": ["difficulty", "open_questions"],
+      "properties": {
+        "difficulty": {
+          "type": "string",
+          "enum": ["beginner_partner", "intermediate", "advanced", "experimental"]
+        },
+        "estimated_sew_hours": { "type": ["number", "null"] },
+        "construction_notes": { "type": "string" },
+        "open_questions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "partner_ready": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "copy": {
+      "type": "object",
+      "required": ["product_name", "short", "long"],
+      "properties": {
+        "product_name": { "type": "string" },
+        "short": { "type": "string", "maxLength": 160 },
+        "long": { "type": "string", "minLength": 80 },
+        "social_hooks": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "care": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "concept",
+        "mockup_draft",
+        "package_ready",
+        "partner_review",
+        "revised",
+        "campaign_ready",
+        "archived"
+      ]
+    },
+    "rights": {
+      "type": "object",
+      "required": ["owner", "license_ref"],
+      "properties": {
+        "owner": { "type": "string", "const": "Cherry | Cyber Lazer Mermicorn" },
+        "license_ref": {
+          "type": "string",
+          "const": "mermicorn-grove/LICENSE"
+        },
+        "ai_assisted": { "type": "boolean" },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "uncertainty": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "$defs": {
+    "view_note": {
+      "type": "object",
+      "required": ["prompt_ref", "notes"],
+      "properties": {
+        "prompt_ref": { "type": "string" },
+        "notes": { "type": "string" },
+        "asset_path": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    }
+  }
+}
