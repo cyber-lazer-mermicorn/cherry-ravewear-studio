@@ -2,26 +2,18 @@ schema_version: "1.0"
 
 id: cherry-ravewear-studio
 display_name: Cherry Ravewear Studio
-lane: passion-commerce
 owner: cherry
-status: foundation
+lane: passion-commerce
 visibility: public
+status: foundation
 
 purpose:
-  problem: Turn Cherry's ravewear concepts into production-ready, market-testable collections.
+  problem: Turn creative ravewear concepts into production-ready collections.
   audience:
     - customers
     - sewing contractors
     - manufacturers
     - creative employers
-
-capabilities:
-  - concept.generate
-  - moodboard.compose
-  - mockup.render
-  - techpack.draft
-  - vendor_handoff.prepare
-  - listing.compose
 
 shared_services:
   boot: mermicorn-mega-boot
@@ -30,16 +22,15 @@ shared_services:
   graphics: mermicorn-graphic-ai
   commerce: mermicorn-commerce-ai
 
-data_policy:
+privacy:
   public:
-    - templates
     - portfolio_samples
     - sanitized_case_studies
+    - templates
   private:
-    - credentials
-    - customer_data
     - vendor_quotes
-    - unpublished_designs
+    - customer_information
+    - unpublished_source_files
 
 first_proof:
   artifact: drop-001-production-and-launch-pack
