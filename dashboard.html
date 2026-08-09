@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherry Rave Wear — Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: #0a0a0f; color: #e0e0e0; font-family: 'Inter', sans-serif; }
+        .glow { box-shadow: 0 0 20px rgba(196, 77, 255, 0.3); }
+        .neon { color: #ff6b9d; text-shadow: 0 0 10px #ff6b9d; }
+        .card { background: #12121a; border: 1px solid #2a2a3a; border-radius: 12px; }
+    </style>
+</head>
+<body class="min-h-screen p-6">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h1 class="text-3xl font-bold neon">Cherry Rave Wear</h1>
+                <p class="text-gray-400">Design → List → Sell</p>
+            </div>
+            <div id="auth-section">
+                <input id="api-key" type="password" placeholder="API Key" 
+                    class="bg-gray-800 border border-gray-600 rounded px-3 py-2 text-sm mr-2">
+                <button onclick="loadDashboard()" class="bg-purple-600 hover:bg-purple-700 rounded px-4 py-2 text-sm">Connect</button>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-4 gap-4 mb-8" id="stats">
+            <div class="card p-4 text-center"><div class="text-2xl font-bold text-purple-400" id="stat-products">0</div><div class="text-gray-400 text-sm">Products</div></div>
+            <div class="card p-4 text-center"><div class="text-2xl font-bold text-pink-400" id="stat-listings">0</div><div class="text-gray-400 text-sm">Active Listings</div></div>
+            <div class="card p-4 text-center"><div class="text-2xl font-bold text-cyan-400" id="stat-revenue">$0</div><div class="text-gray-400 text-sm">Revenue</div></div>
+            <div class="card p-4 text-center"><div class="text-2xl font-bold text-green-400" id="stat-orders">0</div><div class="text-gray-400 text-sm">Orders</div></div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="flex gap-2 mb-6">
+            <button onclick="showTab('design')" class="tab-btn active bg-purple-600 rounded px-4 py-2 text-sm">Design</button>
+            <button onclick="showTab('products')" class="tab-btn bg-gray-700 rounded px-4 py-2 text-sm">Products</button>
+            <button onclick="showTab('listings')" class="tab-btn bg-gray-700 rounded px-4 py-2 text-sm">Marketplaces</button>
+            <button onclick="showTab('midjourney')" class="tab-btn bg-gray-700 rounded px-4 py-2 text-sm">Midjourney</button>
+        </div>
+
+        <!-- Design Tab -->
+        <div id="tab-design" class="tab-content">
+            <div class="card p-6">
+                <h2 class="text-xl font-bold mb-4">Generate Design</h2>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-gray-400 text-sm">Theme</label>
+                        <input id="design-theme" type="text" placeholder="Neon Dreams" class="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 mt-1">
+                    </div>
+                    <div>
+                        <label class="text-gray-400 text-sm">Style</label>
+                        <select id="design-style" class="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 mt-1">
+                            <option value="festival">Festival</option>
+                            <option value="club">Club</option>
+                            <option value="rave">Rave</option>
+                            <option value="cyberpunk">Cyberpunk</option>
+                        </select>
+                    </div>
+                </div>
+                <button onclick="generateDesign()" class="mt-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded px-6 py-2 font-bold">Generate</button>
+                <div id="design-result" class="mt-4 hidden">
+                    <pre class="bg-gray-900 p-4 rounded text-sm overflow-auto max-h-64"></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products Tab -->
+        <div id="tab-products" class="tab-content hidden">
+            <div class="card p-6">
+                <h2 class="text-xl font-bold mb-4">Add Product</h2>
+                <div class="grid grid-cols-2 gap-4">
+                    <input id="prod-name" type="text" placeholder="Product name" class="bg-gray-800 border border-gray-600 rounded px-3 py-2">
+                    <input id="prod-price" type="number" placeholder="Price" class="bg-gray-800 border border-gray-600 rounded px-3 py-2">
+                    <textarea id="prod-desc" placeholder="Description" class="bg-gray-800 border border-gray-600 rounded px-3 py-2 col-span-2" rows="3"></textarea>
+                    <input id="prod-tags" type="text" placeholder="Tags (comma separated)" class="bg-gray-800 border border-gray-600 rounded px-3 py-2 col-span-2">
+                </div>
+                <button onclick="addProduct()" class="mt-4 bg-green-600 hover:bg-green-700 rounded px-6 py-2">Add Product</button>
+                <div id="products-list" class="mt-6"></div>
+            </div>
+        </div>
+
+        <!-- Listings Tab -->
+        <div id="tab-listings" class="tab-content hidden">
+            <div class="card p-6">
+                <h2 class="text-xl font-bold mb-4">Marketplace Listings</h2>
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="bg-gray-800 p-4 rounded text-center">
+                        <div class="text-2xl">🛒</div>
+                        <div class="font-bold">Shopify</div>
+                        <div class="text-green-400" id="shopify-count">0 active</div>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded text-center">
+                        <div class="text-2xl">🧵</div>
+                        <div class="font-bold">Etsy</div>
+                        <div class="text-orange-400" id="etsy-count">0 active</div>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded text-center">
+                        <div class="text-2xl">📦</div>
+                        <div class="font-bold">Amazon</div>
+                        <div class="text-yellow-400" id="amazon-count">0 active</div>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded text-center">
+                        <div class="text-2xl">🏷️</div>
+                        <div class="font-bold">eBay</div>
+                        <div class="text-blue-400" id="ebay-count">0 active</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Midjourney Tab -->
+        <div id="tab-midjourney" class="tab-content hidden">
+            <div class="card p-6">
+                <h2 class="text-xl font-bold mb-4">Midjourney Prompts</h2>
+                <div id="mj-prompts" class="space-y-2">
+                    <p class="text-gray-400">Generate designs to create Midjourney prompts</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let apiKey = '';
+        
+        function showTab(name) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => { el.classList.remove('bg-purple-600'); el.classList.add('bg-gray-700'); });
+            document.getElementById('tab-' + name).classList.remove('hidden');
+            event.target.classList.remove('bg-gray-700');
+            event.target.classList.add('bg-purple-600');
+        }
+        
+        async function api(method, path, body = null) {
+            const opts = { method, headers: { 'Content-Type': 'application/json', 'X-API-Key': apiKey } };
+            if (body) opts.body = JSON.stringify(body);
+            const res = await fetch('/api' + path, opts);
+            return res.json();
+        }
+        
+        async function loadDashboard() {
+            apiKey = document.getElementById('api-key').value;
+            if (!apiKey) { alert('Enter API key'); return; }
+            try {
+                const data = await api('GET', '/products');
+                document.getElementById('products-list').innerHTML = (data.products || []).map(p => 
+                    `<div class="bg-gray-800 p-3 rounded mb-2">${p.name} — $${p.price}</div>`
+                ).join('');
+            } catch(e) { console.error(e); }
+        }
+        
+        async function addProduct() {
+            const name = document.getElementById('prod-name').value;
+            const price = parseFloat(document.getElementById('prod-price').value);
+            const description = document.getElementById('prod-desc').value;
+            const tags = document.getElementById('prod-tags').value.split(',').map(t => t.trim());
+            
+            const result = await api('POST', '/products', { name, price, description, tags });
+            if (result.success) {
+                document.getElementById('prod-name').value = '';
+                document.getElementById('prod-price').value = '';
+                document.getElementById('prod-desc').value = '';
+                document.getElementById('prod-tags').value = '';
+                loadDashboard();
+            }
+        }
+        
+        async function generateDesign() {
+            const theme = document.getElementById('design-theme').value;
+            const style = document.getElementById('design-style').value;
+            document.getElementById('design-result').classList.remove('hidden');
+            document.getElementById('design-result').querySelector('pre').textContent = 
+                `Generating design for "${theme}" in ${style} style...\nConnect OpenAI API key for real AI generation.`;
+        }
+    </script>
+</body>
+</html>
