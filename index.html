@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherry Rave Wear Studio — Premium Rave Fashion</title>
+    <meta name="description" content="Cherry's premium rave wear collection. LED-compatible, UV-reactive, festival-ready designs.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cherry-pink: #FF6B9D;
+            --lazer-purple: #C44DFF;
+            --mermicorn-teal: #00FFD1;
+            --night-base: #0a0a0f;
+            --night-surface: #12121a;
+            --night-card: #1a1a2e;
+            --soft-gray: #8B8B9E;
+            --clean-white: #ffffff;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--night-base);
+            color: var(--clean-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* ═══ NAVIGATION ═══ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(196, 77, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--cherry-pink), var(--lazer-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--soft-gray);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover { color: var(--cherry-pink); }
+        
+        /* ═══ HERO ═══ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(196, 77, 255, 0.15), transparent 70%);
+            top: -200px;
+            right: -200px;
+            pointer-events: none;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 107, 157, 0.12), transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            pointer-events: none;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(196, 77, 255, 0.1);
+            border: 1px solid rgba(196, 77, 255, 0.2);
+            border-radius: 999px;
+            font-size: 0.75rem;
+            color: var(--lazer-purple);
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+        
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--cherry-pink), var(--lazer-purple), var(--mermicorn-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--soft-gray);
+            max-width: 500px;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--cherry-pink), var(--lazer-purple));
+            color: var(--clean-white);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(196, 77, 255, 0.3);
+        }
+        
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--clean-white);
+        }
+        
+        .btn-ghost:hover {
+            border-color: var(--cherry-pink);
+            color: var(--cherry-pink);
+        }
+        
+        /* ═══ COLLECTIONS ═══ */
+        .section {
+            padding: 6rem 2rem;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .section-header p {
+            color: var(--soft-gray);
+        }
+        
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .collection-card {
+            background: var(--night-card);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .collection-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(196, 77, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+        
+        .collection-image {
+            height: 250px;
+            background: linear-gradient(135deg, var(--night-surface), var(--night-card));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        
+        .collection-body {
+            padding: 1.5rem;
+        }
+        
+        .collection-body h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .collection-body p {
+            color: var(--soft-gray);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+        
+        .collection-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .collection-price {
+            font-weight: 700;
+            color: var(--cherry-pink);
+        }
+        
+        .collection-tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(0, 255, 209, 0.1);
+            border-radius: 999px;
+            font-size: 0.7rem;
+            color: var(--mermicorn-teal);
+        }
+        
+        /* ═══ FEATURES ═══ */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature p {
+            color: var(--soft-gray);
+            font-size: 0.875rem;
+        }
+        
+        /* ═══ FOOTER ═══ */
+        footer {
+            padding: 4rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+        }
+        
+        footer p {
+            color: var(--soft-gray);
+            font-size: 0.875rem;
+        }
+        
+        footer .brand {
+            font-weight: 700;
+            color: var(--cherry-pink);
+        }
+        
+        /* ═══ RESPONSIVE ═══ */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .features { grid-template-columns: 1fr; }
+            .collections-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">🍒 CHERRY</div>
+        <ul class="nav-links">
+            <li><a href="#collections">Collections</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <section class="hero">
+        <div class="hero-badge">✨ Premium Rave Wear</div>
+        <h1><span>Rave Wear</span> Designed for the Night</h1>
+        <p>LED-compatible, UV-reactive, festival-ready designs. Handcrafted with love for the rave community.</p>
+        <div class="hero-actions">
+            <a href="#collections" class="btn btn-primary">Shop Collection</a>
+            <a href="#about" class="btn btn-ghost">Our Story</a>
+        </div>
+    </section>
+    
+    <section class="section" id="collections">
+        <div class="section-header">
+            <h2>Featured Collections</h2>
+            <p>Each piece designed for the dance floor</p>
+        </div>
+        <div class="collections-grid">
+            <div class="collection-card">
+                <div class="collection-image">🎆</div>
+                <div class="collection-body">
+                    <h3>Neon Dreams</h3>
+                    <p>UV-reactive tops and bottoms that glow under blacklight.</p>
+                    <div class="collection-meta">
+                        <span class="collection-price">From $49</span>
+                        <span class="collection-tag">NEW</span>
+                    </div>
+                </div>
+            </div>
+            <div class="collection-card">
+                <div class="collection-image">💫</div>
+                <div class="collection-body">
+                    <h3>LED Ready</h3>
+                    <p>Garments with built-in LED pockets and fiber optic threads.</p>
+                    <div class="collection-meta">
+                        <span class="collection-price">From $89</span>
+                        <span class="collection-tag">POPULAR</span>
+                    </div>
+                </div>
+            </div>
+            <div class="collection-card">
+                <div class="collection-image">🌊</div>
+                <div class="collection-body">
+                    <h3>Ocean Flow</h3>
+                    <p>Mermaid-inspired pieces with holographic sequins.</p>
+                    <div class="collection-meta">
+                        <span class="collection-price">From $69</span>
+                        <span class="collection-tag">LIMITED</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section" id="about">
+        <div class="section-header">
+            <h2>Why Cherry?</h2>
+            <p>Built by a raver, for ravers</p>
+        </div>
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🎨</div>
+                <h3>Hand Designed</h3>
+                <p>Every pattern is original, created with love and attention to detail.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>LED Compatible</h3>
+                <p>Designed to work with LED accessories and EL wire.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🌙</div>
+                <h3>UV Reactive</h3>
+                <p>Fabrics that glow under blacklight for maximum impact.</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer id="contact">
+        <p>© 2026 <span class="brand">Cherry Rave Wear Studio</span>. Designed with 💜 in Hawaii.</p>
+    </footer>
+</body>
+</html>
