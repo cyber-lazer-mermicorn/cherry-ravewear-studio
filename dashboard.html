@@ -7,174 +7,242 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background: #0a0a0f; color: #e0e0e0; font-family: 'Inter', sans-serif; }
-        .glow { box-shadow: 0 0 20px rgba(196, 77, 255, 0.3); }
         .neon { color: #ff6b9d; text-shadow: 0 0 10px #ff6b9d; }
         .card { background: #12121a; border: 1px solid #2a2a3a; border-radius: 12px; }
+        .btn { transition: all 0.2s; }
+        .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .fade-in { animation: fadeIn 0.3s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body class="min-h-screen p-6">
     <div class="max-w-6xl mx-auto">
-        <!-- Header -->
         <div class="flex items-center justify-between mb-8">
             <div>
                 <h1 class="text-3xl font-bold neon">Cherry Rave Wear</h1>
-                <p class="text-gray-400">Design → List → Sell</p>
+                <p class="text-gray-400">Design → AI → List → Sell</p>
             </div>
-            <div id="auth-section">
-                <input id="api-key" type="password" placeholder="API Key" 
-                    class="bg-gray-800 border border-gray-600 rounded px-3 py-2 text-sm mr-2">
-                <button onclick="loadDashboard()" class="bg-purple-600 hover:bg-purple-700 rounded px-4 py-2 text-sm">Connect</button>
+            <div class="flex items-center gap-2">
+                <input id="api-key" type="password" placeholder="API Key" class="bg-gray-800 border border-gray-600 rounded px-3 py-2 text-sm w-64">
+                <button onclick="connect()" class="bg-purple-600 hover:bg-purple-700 btn rounded px-4 py-2 text-sm font-bold">Connect</button>
             </div>
         </div>
 
-        <!-- Stats -->
-        <div class="grid grid-cols-4 gap-4 mb-8" id="stats">
-            <div class="card p-4 text-center"><div class="text-2xl font-bold text-purple-400" id="stat-products">0</div><div class="text-gray-400 text-sm">Products</div></div>
-            <div class="card p-4 text-center"><div class="text-2xl font-bold text-pink-400" id="stat-listings">0</div><div class="text-gray-400 text-sm">Active Listings</div></div>
-            <div class="card p-4 text-center"><div class="text-2xl font-bold text-cyan-400" id="stat-revenue">$0</div><div class="text-gray-400 text-sm">Revenue</div></div>
-            <div class="card p-4 text-center"><div class="text-2xl font-bold text-green-400" id="stat-orders">0</div><div class="text-gray-400 text-sm">Orders</div></div>
-        </div>
+        <div id="app" class="hidden">
+            <!-- Stats -->
+            <div class="grid grid-cols-4 gap-4 mb-8">
+                <div class="card p-4 text-center"><div class="text-2xl font-bold text-purple-400" id="stat-products">0</div><div class="text-gray-400 text-sm">Products</div></div>
+                <div class="card p-4 text-center"><div class="text-2xl font-bold text-pink-400" id="stat-coins">0</div><div class="text-gray-400 text-sm">Coins</div></div>
+                <div class="card p-4 text-center"><div class="text-2xl font-bold text-cyan-400" id="stat-vehicles">0</div><div class="text-gray-400 text-sm">Vehicles</div></div>
+                <div class="card p-4 text-center"><div class="text-2xl font-bold text-green-400" id="stat-deals">0</div><div class="text-gray-400 text-sm">Deals</div></div>
+            </div>
 
-        <!-- Tabs -->
-        <div class="flex gap-2 mb-6">
-            <button onclick="showTab('design')" class="tab-btn active bg-purple-600 rounded px-4 py-2 text-sm">Design</button>
-            <button onclick="showTab('products')" class="tab-btn bg-gray-700 rounded px-4 py-2 text-sm">Products</button>
-            <button onclick="showTab('listings')" class="tab-btn bg-gray-700 rounded px-4 py-2 text-sm">Marketplaces</button>
-            <button onclick="showTab('midjourney')" class="tab-btn bg-gray-700 rounded px-4 py-2 text-sm">Midjourney</button>
-        </div>
-
-        <!-- Design Tab -->
-        <div id="tab-design" class="tab-content">
-            <div class="card p-6">
-                <h2 class="text-xl font-bold mb-4">Generate Design</h2>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="text-gray-400 text-sm">Theme</label>
-                        <input id="design-theme" type="text" placeholder="Neon Dreams" class="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 mt-1">
+            <div class="grid grid-cols-2 gap-6">
+                <!-- Add Product -->
+                <div class="card p-6">
+                    <h2 class="text-xl font-bold mb-4">🛍️ Add Product</h2>
+                    <input id="p-name" type="text" placeholder="Product name" class="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 mb-3">
+                    <div class="grid grid-cols-2 gap-3 mb-3">
+                        <input id="p-price" type="number" placeholder="Price" class="bg-gray-800 border border-gray-600 rounded px-3 py-2">
+                        <input id="p-tags" type="text" placeholder="Tags (rave, UV)" class="bg-gray-800 border border-gray-600 rounded px-3 py-2">
                     </div>
-                    <div>
-                        <label class="text-gray-400 text-sm">Style</label>
-                        <select id="design-style" class="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 mt-1">
-                            <option value="festival">Festival</option>
-                            <option value="club">Club</option>
-                            <option value="rave">Rave</option>
-                            <option value="cyberpunk">Cyberpunk</option>
-                        </select>
-                    </div>
+                    <textarea id="p-desc" placeholder="Description" class="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 mb-3" rows="2"></textarea>
+                    <button onclick="addProduct()" class="w-full bg-green-600 hover:bg-green-700 btn rounded px-4 py-2 font-bold">Add Product</button>
+                    <div id="products-list" class="mt-4 space-y-2 max-h-48 overflow-auto"></div>
                 </div>
-                <button onclick="generateDesign()" class="mt-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded px-6 py-2 font-bold">Generate</button>
-                <div id="design-result" class="mt-4 hidden">
+
+                <!-- Add Coin -->
+                <div class="card p-6">
+                    <h2 class="text-xl font-bold mb-4">🪙 Add Coin</h2>
+                    <input id="c-name" type="text" placeholder="e.g. Morgan Silver Dollar" class="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 mb-3">
+                    <div class="grid grid-cols-3 gap-3 mb-3">
+                        <input id="c-year" type="number" placeholder="Year" class="bg-gray-800 border border-gray-600 rounded px-3 py-2">
+                        <input id="c-grade" type="text" placeholder="Grade" class="bg-gray-800 border border-gray-600 rounded px-3 py-2">
+                        <input id="c-price" type="number" placeholder="Price" class="bg-gray-800 border border-gray-600 rounded px-3 py-2">
+                    </div>
+                    <button onclick="addCoin()" class="w-full bg-yellow-600 hover:bg-yellow-700 btn rounded px-4 py-2 font-bold">Add Coin</button>
+                    <div id="coins-list" class="mt-4 space-y-2 max-h-48 overflow-auto"></div>
+                </div>
+
+                <!-- Add Vehicle -->
+                <div class="card p-6">
+                    <h2 class="text-xl font-bold mb-4">🚗 Add Vehicle</h2>
+                    <div class="grid grid-cols-3 gap-3 mb-3">
+                        <input id="v-year" type="number" placeholder="Year" class="bg-gray-800 border border-gray-600 rounded px-3 py-2">
+                        <input id="v-make" type="text" placeholder="Make" class="bg-gray-800 border border-gray-600 rounded px-3 py-2">
+                        <input id="v-model" type="text" placeholder="Model" class="bg-gray-800 border border-gray-600 rounded px-3 py-2">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 mb-3">
+                        <input id="v-price" type="number" placeholder="Price" class="bg-gray-800 border border-gray-600 rounded px-3 py-2">
+                        <input id="v-mileage" type="number" placeholder="Mileage" class="bg-gray-800 border border-gray-600 rounded px-3 py-2">
+                    </div>
+                    <button onclick="addVehicle()" class="w-full bg-cyan-600 hover:bg-cyan-700 btn rounded px-4 py-2 font-bold">Add Vehicle</button>
+                    <div id="vehicles-list" class="mt-4 space-y-2 max-h-48 overflow-auto"></div>
+                </div>
+
+                <!-- Add Deal -->
+                <div class="card p-6">
+                    <h2 class="text-xl font-bold mb-4">✈️ Add Deal</h2>
+                    <input id="d-dest" type="text" placeholder="Destination" class="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 mb-3">
+                    <div class="grid grid-cols-3 gap-3 mb-3">
+                        <input id="d-price" type="number" placeholder="Price" class="bg-gray-800 border border-gray-600 rounded px-3 py-2">
+                        <input id="d-dates" type="text" placeholder="Aug 15-22" class="bg-gray-800 border border-gray-600 rounded px-3 py-2">
+                        <input id="d-source" type="text" placeholder="Source" class="bg-gray-800 border border-gray-600 rounded px-3 py-2">
+                    </div>
+                    <button onclick="addDeal()" class="w-full bg-green-600 hover:bg-green-700 btn rounded px-4 py-2 font-bold">Add Deal</button>
+                    <div id="deals-list" class="mt-4 space-y-2 max-h-48 overflow-auto"></div>
+                </div>
+            </div>
+
+            <!-- AI Section -->
+            <div class="card p-6 mt-6">
+                <h2 class="text-xl font-bold mb-4">🤖 AI Assistant (Powered by Groq — Free)</h2>
+                <div class="flex gap-3">
+                    <input id="ai-input" type="text" placeholder="Ask AI: identify coin, value car, score deal..." class="flex-1 bg-gray-800 border border-gray-600 rounded px-4 py-3">
+                    <button onclick="askAI()" class="bg-gradient-to-r from-purple-600 to-pink-600 btn rounded px-6 py-3 font-bold">Ask</button>
+                </div>
+                <div id="ai-result" class="mt-4 hidden">
                     <pre class="bg-gray-900 p-4 rounded text-sm overflow-auto max-h-64"></pre>
                 </div>
             </div>
         </div>
 
-        <!-- Products Tab -->
-        <div id="tab-products" class="tab-content hidden">
-            <div class="card p-6">
-                <h2 class="text-xl font-bold mb-4">Add Product</h2>
-                <div class="grid grid-cols-2 gap-4">
-                    <input id="prod-name" type="text" placeholder="Product name" class="bg-gray-800 border border-gray-600 rounded px-3 py-2">
-                    <input id="prod-price" type="number" placeholder="Price" class="bg-gray-800 border border-gray-600 rounded px-3 py-2">
-                    <textarea id="prod-desc" placeholder="Description" class="bg-gray-800 border border-gray-600 rounded px-3 py-2 col-span-2" rows="3"></textarea>
-                    <input id="prod-tags" type="text" placeholder="Tags (comma separated)" class="bg-gray-800 border border-gray-600 rounded px-3 py-2 col-span-2">
-                </div>
-                <button onclick="addProduct()" class="mt-4 bg-green-600 hover:bg-green-700 rounded px-6 py-2">Add Product</button>
-                <div id="products-list" class="mt-6"></div>
-            </div>
-        </div>
-
-        <!-- Listings Tab -->
-        <div id="tab-listings" class="tab-content hidden">
-            <div class="card p-6">
-                <h2 class="text-xl font-bold mb-4">Marketplace Listings</h2>
-                <div class="grid grid-cols-2 gap-4 mb-6">
-                    <div class="bg-gray-800 p-4 rounded text-center">
-                        <div class="text-2xl">🛒</div>
-                        <div class="font-bold">Shopify</div>
-                        <div class="text-green-400" id="shopify-count">0 active</div>
-                    </div>
-                    <div class="bg-gray-800 p-4 rounded text-center">
-                        <div class="text-2xl">🧵</div>
-                        <div class="font-bold">Etsy</div>
-                        <div class="text-orange-400" id="etsy-count">0 active</div>
-                    </div>
-                    <div class="bg-gray-800 p-4 rounded text-center">
-                        <div class="text-2xl">📦</div>
-                        <div class="font-bold">Amazon</div>
-                        <div class="text-yellow-400" id="amazon-count">0 active</div>
-                    </div>
-                    <div class="bg-gray-800 p-4 rounded text-center">
-                        <div class="text-2xl">🏷️</div>
-                        <div class="font-bold">eBay</div>
-                        <div class="text-blue-400" id="ebay-count">0 active</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Midjourney Tab -->
-        <div id="tab-midjourney" class="tab-content hidden">
-            <div class="card p-6">
-                <h2 class="text-xl font-bold mb-4">Midjourney Prompts</h2>
-                <div id="mj-prompts" class="space-y-2">
-                    <p class="text-gray-400">Generate designs to create Midjourney prompts</p>
-                </div>
-            </div>
+        <!-- Login prompt -->
+        <div id="login-prompt" class="card p-12 text-center">
+            <div class="text-6xl mb-4">💜</div>
+            <h2 class="text-2xl font-bold mb-2">Welcome to Cherry's Dashboard</h2>
+            <p class="text-gray-400 mb-6">Enter your API key to connect</p>
+            <p class="text-sm text-gray-500">Don't have one? <a href="#" onclick="register()" class="text-purple-400 underline">Create account</a></p>
         </div>
     </div>
 
     <script>
-        let apiKey = '';
-        
-        function showTab(name) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('.tab-btn').forEach(el => { el.classList.remove('bg-purple-600'); el.classList.add('bg-gray-700'); });
-            document.getElementById('tab-' + name).classList.remove('hidden');
-            event.target.classList.remove('bg-gray-700');
-            event.target.classList.add('bg-purple-600');
-        }
-        
+        let API_KEY = '';
+        const API = 'http://localhost:8000';
+
         async function api(method, path, body = null) {
-            const opts = { method, headers: { 'Content-Type': 'application/json', 'X-API-Key': apiKey } };
+            const opts = { method, headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY } };
             if (body) opts.body = JSON.stringify(body);
-            const res = await fetch('/api' + path, opts);
+            const res = await fetch(API + path, opts);
             return res.json();
         }
-        
-        async function loadDashboard() {
-            apiKey = document.getElementById('api-key').value;
-            if (!apiKey) { alert('Enter API key'); return; }
+
+        async function connect() {
+            API_KEY = document.getElementById('api-key').value;
+            if (!API_KEY) return alert('Enter API key');
             try {
-                const data = await api('GET', '/products');
-                document.getElementById('products-list').innerHTML = (data.products || []).map(p => 
-                    `<div class="bg-gray-800 p-3 rounded mb-2">${p.name} — $${p.price}</div>`
-                ).join('');
-            } catch(e) { console.error(e); }
+                const me = await api('GET', '/auth/me');
+                if (me.user) {
+                    document.getElementById('login-prompt').classList.add('hidden');
+                    document.getElementById('app').classList.remove('hidden');
+                    loadAll();
+                }
+            } catch(e) { alert('Invalid key'); }
         }
-        
-        async function addProduct() {
-            const name = document.getElementById('prod-name').value;
-            const price = parseFloat(document.getElementById('prod-price').value);
-            const description = document.getElementById('prod-desc').value;
-            const tags = document.getElementById('prod-tags').value.split(',').map(t => t.trim());
-            
-            const result = await api('POST', '/products', { name, price, description, tags });
-            if (result.success) {
-                document.getElementById('prod-name').value = '';
-                document.getElementById('prod-price').value = '';
-                document.getElementById('prod-desc').value = '';
-                document.getElementById('prod-tags').value = '';
-                loadDashboard();
+
+        async function register() {
+            const username = prompt('Username:');
+            const email = prompt('Email:');
+            const password = prompt('Password:');
+            if (!username || !email || !password) return;
+            const result = await fetch(API + '/auth/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, email, password })
+            }).then(r => r.json());
+            if (result.user) {
+                alert('Account created! API Key: ' + result.user.api_key);
+                document.getElementById('api-key').value = result.user.api_key;
             }
         }
-        
-        async function generateDesign() {
-            const theme = document.getElementById('design-theme').value;
-            const style = document.getElementById('design-style').value;
-            document.getElementById('design-result').classList.remove('hidden');
-            document.getElementById('design-result').querySelector('pre').textContent = 
-                `Generating design for "${theme}" in ${style} style...\nConnect OpenAI API key for real AI generation.`;
+
+        async function loadAll() {
+            const [products, coins, vehicles, deals] = await Promise.all([
+                api('GET', '/api/products'),
+                api('GET', '/api/coins'),
+                api('GET', '/api/vehicles'),
+                api('GET', '/api/deals'),
+            ]);
+
+            document.getElementById('stat-products').textContent = (products.products || []).length;
+            document.getElementById('stat-coins').textContent = (coins.coins || []).length;
+            document.getElementById('stat-vehicles').textContent = (vehicles.vehicles || []).length;
+            document.getElementById('stat-deals').textContent = (deals.deals || []).length;
+
+            renderList('products-list', products.products || [], p => `${p.name} — $${p.price}`);
+            renderList('coins-list', coins.coins || [], c => `${c.name} (${c.year}) ${c.grade} — $${c.price}`);
+            renderList('vehicles-list', vehicles.vehicles || [], v => `${v.year} ${v.make} ${v.model} — $${v.price}`);
+            renderList('deals-list', deals.deals || [], d => `${d.destination} ${d.dates} — $${d.price}`);
+        }
+
+        function renderList(id, items, format) {
+            document.getElementById(id).innerHTML = items.map(i => 
+                `<div class="bg-gray-800 p-2 rounded text-sm fade-in">${format(i)}</div>`
+            ).join('');
+        }
+
+        async function addProduct() {
+            await api('POST', '/api/products', {
+                name: document.getElementById('p-name').value,
+                price: parseFloat(document.getElementById('p-price').value),
+                description: document.getElementById('p-desc').value,
+                tags: document.getElementById('p-tags').value.split(',').map(t => t.trim()),
+            });
+            loadAll();
+        }
+
+        async function addCoin() {
+            await api('POST', '/api/coins', {
+                name: document.getElementById('c-name').value,
+                year: parseInt(document.getElementById('c-year').value),
+                grade: document.getElementById('c-grade').value,
+                price: parseFloat(document.getElementById('c-price').value),
+            });
+            loadAll();
+        }
+
+        async function addVehicle() {
+            await api('POST', '/api/vehicles', {
+                year: parseInt(document.getElementById('v-year').value),
+                make: document.getElementById('v-make').value,
+                model: document.getElementById('v-model').value,
+                price: parseFloat(document.getElementById('v-price').value),
+                mileage: parseInt(document.getElementById('v-mileage').value),
+            });
+            loadAll();
+        }
+
+        async function addDeal() {
+            await api('POST', '/api/deals', {
+                destination: document.getElementById('d-dest').value,
+                price: parseFloat(document.getElementById('d-price').value),
+                dates: document.getElementById('d-dates').value,
+                source: document.getElementById('d-source').value,
+            });
+            loadAll();
+        }
+
+        async function askAI() {
+            const q = document.getElementById('ai-input').value;
+            document.getElementById('ai-result').classList.remove('hidden');
+            document.getElementById('ai-result').querySelector('pre').textContent = 'Thinking...';
+            
+            // Call Groq directly for AI
+            const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer YOUR_GROQ_API_KEY_HERE',
+                },
+                body: JSON.stringify({
+                    model: 'llama-3.3-70b-versatile',
+                    messages: [{ role: 'user', content: q }],
+                    max_tokens: 500,
+                }),
+            });
+            const data = await res.json();
+            document.getElementById('ai-result').querySelector('pre').textContent = 
+                data.choices?.[0]?.message?.content || 'Error: ' + JSON.stringify(data);
         }
     </script>
 </body>
