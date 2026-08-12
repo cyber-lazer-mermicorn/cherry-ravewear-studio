@@ -3,7 +3,7 @@ schema_version: "1.0"
 id: cherry-ravewear-studio
 display_name: Cherry Ravewear Studio
 owner: cherry
-lane: passion-commerce
+lane: commerce
 visibility: public
 status: building
 
