@@ -1,423 +1,845 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta property="og:title" content="AI-Powered Rave Wear Design Studio | Midjourney calibration">
-    <meta property="og:description" content="AI-Powered Rave Wear Design Studio | Midjourney calibration">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lazermermicorn.com">
-    <meta property="og:image" content="https://lazermermicorn.com/og-image.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AI-Powered Rave Wear Design Studio | Midjourney calibration">
-    <meta name="twitter:description" content="AI-Powered Rave Wear Design Studio | Midjourney calibration">
-    <meta name="theme-color" content="#050508">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cherry Rave Wear Studio — Premium Rave Fashion</title>
-    <meta name="description" content="Cherry's premium rave wear collection. LED-compatible, UV-reactive, festival-ready designs.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --cherry-pink: #FF6B9D;
-            --lazer-purple: #C44DFF;
-            --mermicorn-teal: #00FFD1;
-            --night-base: #0a0a0f;
-            --night-surface: #12121a;
-            --night-card: #1a1a2e;
-            --soft-gray: #8B8B9E;
-            --clean-white: #ffffff;
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        html { scroll-behavior: smooth; }
-        
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: var(--night-base);
-            color: var(--clean-white);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        /* ═══ NAVIGATION ═══ */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1rem 2rem;
-            background: rgba(10, 10, 15, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(196, 77, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.25rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--cherry-pink), var(--lazer-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.02em;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            color: var(--soft-gray);
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        
-        .nav-links a:hover { color: var(--cherry-pink); }
-        
-        /* ═══ HERO ═══ */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 6rem 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(196, 77, 255, 0.15), transparent 70%);
-            top: -200px;
-            right: -200px;
-            pointer-events: none;
-        }
-        
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255, 107, 157, 0.12), transparent 70%);
-            bottom: -150px;
-            left: -150px;
-            pointer-events: none;
-        }
-        
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(196, 77, 255, 0.1);
-            border: 1px solid rgba(196, 77, 255, 0.2);
-            border-radius: 999px;
-            font-size: 0.75rem;
-            color: var(--lazer-purple);
-            margin-bottom: 1.5rem;
-        }
-        
-        .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 900;
-            line-height: 1;
-            letter-spacing: -0.04em;
-            margin-bottom: 1.5rem;
-            max-width: 800px;
-        }
-        
-        .hero h1 span {
-            background: linear-gradient(135deg, var(--cherry-pink), var(--lazer-purple), var(--mermicorn-teal));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .hero p {
-            font-size: 1.125rem;
-            color: var(--soft-gray);
-            max-width: 500px;
-            margin-bottom: 2rem;
-        }
-        
-        .hero-actions {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 999px;
-            font-weight: 600;
-            font-size: 0.875rem;
-            text-decoration: none;
-            transition: all 0.2s;
-            cursor: pointer;
-            border: none;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--cherry-pink), var(--lazer-purple));
-            color: var(--clean-white);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(196, 77, 255, 0.3);
-        }
-        
-        .btn-ghost {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: var(--clean-white);
-        }
-        
-        .btn-ghost:hover {
-            border-color: var(--cherry-pink);
-            color: var(--cherry-pink);
-        }
-        
-        /* ═══ COLLECTIONS ═══ */
-        .section {
-            padding: 6rem 2rem;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 900;
-            letter-spacing: -0.03em;
-            margin-bottom: 0.5rem;
-        }
-        
-        .section-header p {
-            color: var(--soft-gray);
-        }
-        
-        .collections-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .collection-card {
-            background: var(--night-card);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-        
-        .collection-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(196, 77, 255, 0.3);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-        }
-        
-        .collection-image {
-            height: 250px;
-            background: linear-gradient(135deg, var(--night-surface), var(--night-card));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-        }
-        
-        .collection-body {
-            padding: 1.5rem;
-        }
-        
-        .collection-body h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-        
-        .collection-body p {
-            color: var(--soft-gray);
-            font-size: 0.875rem;
-            margin-bottom: 1rem;
-        }
-        
-        .collection-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .collection-price {
-            font-weight: 700;
-            color: var(--cherry-pink);
-        }
-        
-        .collection-tag {
-            padding: 0.25rem 0.75rem;
-            background: rgba(0, 255, 209, 0.1);
-            border-radius: 999px;
-            font-size: 0.7rem;
-            color: var(--mermicorn-teal);
-        }
-        
-        /* ═══ FEATURES ═══ */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .feature {
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .feature h3 {
-            font-size: 1.125rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .feature p {
-            color: var(--soft-gray);
-            font-size: 0.875rem;
-        }
-        
-        /* ═══ FOOTER ═══ */
-        footer {
-            padding: 4rem 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            text-align: center;
-        }
-        
-        footer p {
-            color: var(--soft-gray);
-            font-size: 0.875rem;
-        }
-        
-        footer .brand {
-            font-weight: 700;
-            color: var(--cherry-pink);
-        }
-        
-        /* ═══ RESPONSIVE ═══ */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero h1 { font-size: 2.5rem; }
-            .features { grid-template-columns: 1fr; }
-            .collections-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cherry Ravewear Studio — Drop 001 Neon Tide</title>
+  <meta name="description" content="Cherry Ravewear Studio — AI-directed festival fashion, Drop 001 Neon Tide. UV-reactive concepts, LED-ready construction notes, production hand-off. Designed in Hawaii." />
+  <meta name="theme-color" content="#07040c" />
+  <link rel="canonical" href="https://ravewear.lazermermicorn.com/" />
+
+  <meta property="og:title" content="Cherry Ravewear Studio — Drop 001 Neon Tide" />
+  <meta property="og:description" content="Festival fashion concepts, AI mockups, and production hand-off. Neon Tide is in studio." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ravewear.lazermermicorn.com" />
+  <meta property="og:image" content="https://lazermermicorn.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Cherry Ravewear Studio — Drop 001" />
+  <meta name="twitter:description" content="Neon Tide — UV, LED-ready, festival systems." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --void: #07040c;
+      --ink: #0e0814;
+      --glass: rgba(18, 10, 28, 0.55);
+      --line: rgba(255, 255, 255, 0.1);
+      --text: #f8f5ff;
+      --muted: #9a8fb0;
+      --pink: #ff6b9d;
+      --violet: #c44dff;
+      --teal: #00ffd1;
+      --amber: #ffc857;
+      --grad: linear-gradient(135deg, #ff6b9d 0%, #c44dff 48%, #00ffd1 100%);
+      --pad: clamp(1rem, 4vw, 2.5rem);
+      --max: 1120px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Outfit", system-ui, sans-serif;
+      background: var(--void);
+      color: var(--text);
+      line-height: 1.55;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .field {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background:
+        radial-gradient(ellipse 70% 45% at 15% 0%, rgba(196, 77, 255, 0.18), transparent),
+        radial-gradient(ellipse 50% 40% at 90% 20%, rgba(255, 107, 157, 0.12), transparent),
+        radial-gradient(ellipse 40% 30% at 50% 100%, rgba(0, 255, 209, 0.08), transparent),
+        var(--void);
+    }
+
+    /* Nav */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.85rem var(--pad);
+      background: rgba(7, 4, 12, 0.7);
+      backdrop-filter: blur(18px) saturate(1.3);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .nav.scrolled {
+      border-bottom-color: var(--line);
+      background: rgba(7, 4, 12, 0.9);
+    }
+    .logo {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.55rem;
+      letter-spacing: 0.06em;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 1.4rem; align-items: center; }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--text); }
+    .nav-cta {
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      background: var(--grad);
+      color: #120818 !important;
+      -webkit-text-fill-color: #120818;
+      font-weight: 700;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--line);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 0.35rem 0.55rem;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 6rem var(--pad) 4rem;
+      overflow: hidden;
+    }
+    .hero-photo { position: absolute; inset: 0; z-index: 0; }
+    .hero-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transform: scale(1.1);
+      filter: brightness(0.42) saturate(1.25) contrast(1.05);
+      transition: transform 1.3s var(--ease);
+    }
+    .hero.is-focused .hero-photo img { transform: scale(1); }
+    .hero-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(7,4,12,0.5) 0%, rgba(7,4,12,0.25) 35%, rgba(7,4,12,0.92) 100%),
+        radial-gradient(ellipse at 70% 40%, rgba(196,77,255,0.2), transparent 50%);
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 780px; text-align: center; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.95rem;
+      border-radius: 999px;
+      border: 1px solid rgba(196, 77, 255, 0.35);
+      background: rgba(18, 10, 28, 0.55);
+      backdrop-filter: blur(12px);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1.35rem;
+    }
+    .pill-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 12px var(--teal);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .hero h1 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(3.2rem, 12vw, 6.5rem);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.35rem;
+    }
+    .hero h1 span {
+      display: block;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-family: "Instrument Serif", serif;
+      font-style: italic;
+      font-size: clamp(1.15rem, 2.5vw, 1.55rem);
+      color: rgba(248, 245, 255, 0.85);
+      margin-bottom: 1rem;
+    }
+    .hero-lead {
+      color: var(--muted);
+      max-width: 32rem;
+      margin: 0 auto 2rem;
+      font-size: 1rem;
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.85rem 1.4rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: transform 0.25s var(--ease), box-shadow 0.25s, border-color 0.25s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-solid {
+      background: var(--grad);
+      color: #120818;
+      box-shadow: 0 10px 40px rgba(196, 77, 255, 0.35);
+    }
+    .btn-ghost {
+      background: var(--glass);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .btn-ghost:hover { border-color: rgba(255, 107, 157, 0.5); }
+    .scroll-cue {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .scroll-cue i {
+      width: 1px;
+      height: 34px;
+      background: linear-gradient(to bottom, var(--pink), transparent);
+      animation: drip 1.8s ease-in-out infinite;
+    }
+    @keyframes drip {
+      0% { transform: scaleY(0.25); opacity: 0; }
+      40% { opacity: 1; }
+      100% { transform: scaleY(1); opacity: 0; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+    .d3 { transition-delay: 0.24s; }
+
+    section { padding: clamp(3.5rem, 9vw, 6.5rem) var(--pad); }
+    .wrap { max-width: var(--max); margin: 0 auto; }
+    .kicker {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      font-weight: 600;
+      margin-bottom: 0.65rem;
+    }
+    .title {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      letter-spacing: 0.03em;
+      line-height: 1;
+      margin-bottom: 0.65rem;
+    }
+    .sub {
+      color: var(--muted);
+      max-width: 34rem;
+      margin-bottom: 2.25rem;
+    }
+
+    /* Photo band */
+    .photo-band {
+      position: relative;
+      min-height: min(68vh, 520px);
+      display: grid;
+      place-items: end start;
+      padding: var(--pad);
+      overflow: hidden;
+    }
+    .photo-band img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(0.48) saturate(1.2);
+      transform: scale(1.07);
+      transition: transform 1.4s var(--ease);
+    }
+    .photo-band.is-focused img { transform: scale(1); }
+    .photo-band::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(100deg, rgba(7,4,12,0.9) 0%, rgba(7,4,12,0.4) 55%, transparent 100%);
+    }
+    .band-card {
+      position: relative;
+      z-index: 1;
+      max-width: 28rem;
+      padding: 1.4rem 1.5rem;
+      border-radius: 20px;
+      background: var(--glass);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+    .band-card h2 {
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 400;
+      margin-bottom: 0.45rem;
+    }
+    .band-card p { color: rgba(248,245,255,0.8); font-size: 0.95rem; }
+
+    /* Horizontal lookbook */
+    .lookbook-track {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 0.75rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--violet) transparent;
+    }
+    .look-card {
+      flex: 0 0 min(78vw, 320px);
+      scroll-snap-align: start;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: var(--ink);
+      position: relative;
+      min-height: 380px;
+      transition: transform 0.35s var(--ease), border-color 0.35s;
+    }
+    .look-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 107, 157, 0.4);
+    }
+    .look-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(0.55) saturate(1.15);
+    }
+    .look-card .look-body {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 1.25rem;
+      background: linear-gradient(transparent, rgba(7,4,12,0.95));
+    }
+    .look-card h3 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.55rem;
+      letter-spacing: 0.04em;
+    }
+    .look-card p { color: var(--muted); font-size: 0.85rem; margin-top: 0.25rem; }
+    .look-tag {
+      display: inline-block;
+      margin-top: 0.65rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      border: 1px solid rgba(0, 255, 209, 0.3);
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+    }
+
+    /* Lilypad grid */
+    .pad-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1rem;
+    }
+    .lilypad {
+      grid-column: span 4;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      padding: 1.4rem;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s var(--ease), border-color 0.35s, box-shadow 0.35s;
+    }
+    .lilypad::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, var(--glow, rgba(196,77,255,0.15)), transparent 55%);
+      pointer-events: none;
+    }
+    .lilypad:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,0.22);
+      box-shadow: 0 22px 50px rgba(0,0,0,0.4);
+    }
+    .lilypad.wide { grid-column: span 6; }
+    .lilypad.span8 { grid-column: span 8; }
+    .pad-icon {
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      margin-bottom: 0.9rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--line);
+      position: relative;
+    }
+    .lilypad h3 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.45rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.4rem;
+      position: relative;
+    }
+    .lilypad p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      flex: 1;
+      position: relative;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 1rem;
+      position: relative;
+    }
+    .chip {
+      font-size: 0.68rem;
+      padding: 0.22rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(196, 77, 255, 0.3);
+      color: var(--violet);
+      background: rgba(196, 77, 255, 0.08);
+    }
+
+    /* Color story */
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.75rem;
+    }
+    .swatch {
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0.85rem;
+      transition: transform 0.3s var(--ease);
+    }
+    .swatch:hover { transform: translateY(-4px) scale(1.02); }
+    .swatch span {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+    }
+
+    /* Status honesty panel */
+    .truth {
+      border-radius: 24px;
+      border: 1px solid rgba(0, 255, 209, 0.25);
+      background:
+        radial-gradient(ellipse at top left, rgba(0,255,209,0.08), transparent 50%),
+        var(--glass);
+      padding: clamp(1.25rem, 3vw, 2rem);
+      backdrop-filter: blur(14px);
+    }
+    .truth ul {
+      list-style: none;
+      margin-top: 1rem;
+      display: grid;
+      gap: 0.5rem;
+    }
+    .truth li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      padding-left: 1.1rem;
+      position: relative;
+    }
+    .truth li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    /* CTA footer band */
+    .cta-band {
+      text-align: center;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(ellipse at center, rgba(196,77,255,0.12), transparent 60%),
+        var(--glass);
+      padding: clamp(2rem, 5vw, 3.5rem);
+      backdrop-filter: blur(14px);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 2rem var(--pad);
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+    footer a { color: var(--pink); }
+
+    @media (max-width: 900px) {
+      .lilypad, .lilypad.wide, .lilypad.span8 { grid-column: span 12; }
+      .swatches { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+      .nav.open .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        padding: 1rem var(--pad) 1.2rem;
+        background: rgba(7,4,12,0.96);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav-toggle { display: block; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .hero-photo img, .photo-band img { transform: none !important; transition: none; }
+      .pill-dot, .scroll-cue i { animation: none; }
+    }
+  </style>
 </head>
 <body>
-    <nav>
-        <div class="logo">🍒 CHERRY</div>
-        <ul class="nav-links">
-            <li><a href="#collections">Collections</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+  <div class="field" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <a class="logo" href="#top">CHERRY RAVEWEAR</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">Menu</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#drop001">Drop 001</a>
+      <a href="#system">System</a>
+      <a href="#colors">Color</a>
+      <a href="#studio">Studio</a>
+      <a href="https://lazermermicorn.com" class="nav-cta">Grove</a>
     </nav>
-    
-    <section class="hero">
-        <div class="hero-badge">✨ Premium Rave Wear</div>
-        <h1><span>Rave Wear</span> Designed for the Night</h1>
-        <p>LED-compatible, UV-reactive, festival-ready designs. Handcrafted with love for the rave community.</p>
-        <div class="hero-actions">
-            <a href="#collections" class="btn btn-primary">Shop Collection</a>
-            <a href="#about" class="btn btn-ghost">Our Story</a>
+  </header>
+
+  <main id="top">
+    <section class="hero is-focused" data-focus>
+      <div class="hero-photo" aria-hidden="true">
+        <img
+          src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=2000&q=80"
+          alt=""
+          width="2000"
+          height="1200"
+          fetchpriority="high"
+        />
+      </div>
+      <div class="hero-inner">
+        <div class="pill"><span class="pill-dot" aria-hidden="true"></span> Drop 001 · Neon Tide · Studio</div>
+        <h1>CLOTHES FOR THE <span>BLACKLIGHT</span></h1>
+        <p class="hero-sub">Designed for the floor. Documented for the factory.</p>
+        <p class="hero-lead">
+          Cherry Ravewear Studio is the creative + production lane of Cyber Lazer Mermicorn —
+          AI-directed concepts, UV/LED construction notes, and honest drop status from Hawaii.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn-solid" href="#drop001">Enter Drop 001</a>
+          <a class="btn btn-ghost" href="#studio">Studio truth</a>
+          <a class="btn btn-ghost" href="https://github.com/cyber-lazer-mermicorn/cherry-ravewear-studio" target="_blank" rel="noopener">GitHub</a>
         </div>
+      </div>
+      <div class="scroll-cue" aria-hidden="true">Scroll <i></i></div>
     </section>
-    
-    <section class="section" id="collections">
-        <div class="section-header">
-            <h2>Featured Collections</h2>
-            <p>Each piece designed for the dance floor</p>
+
+    <div class="photo-band" data-focus>
+      <img
+        src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1800&q=80"
+        alt=""
+        loading="lazy"
+        width="1800"
+        height="1000"
+      />
+      <div class="band-card reveal">
+        <h2>The night is the brief.</h2>
+        <p>Neon Tide starts as a mood system — tide, UV bloom, holographic fringe — then becomes packages a manufacturer can read.</p>
+      </div>
+    </div>
+
+    <section id="drop001">
+      <div class="wrap">
+        <p class="kicker reveal">Lookbook</p>
+        <h2 class="title reveal">DROP 001 — NEON TIDE</h2>
+        <p class="sub reveal">Horizontal snap strip. Concept references for the first capsule. Status: mockup draft until owned assets land.</p>
+
+        <div class="lookbook-track reveal">
+          <article class="look-card">
+            <img src="https://images.unsplash.com/photo-1571266028243-d220c8a6b8f5?auto=format&fit=crop&w=800&q=80" alt="" loading="lazy" />
+            <div class="look-body">
+              <h3>TIDE BODYSUIT</h3>
+              <p>RW-DROP001-001 · Contour + UV panels</p>
+              <span class="look-tag">Mockup draft</span>
+            </div>
+          </article>
+          <article class="look-card">
+            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80" alt="" loading="lazy" />
+            <div class="look-body">
+              <h3>BLOOM CROP</h3>
+              <p>RW-DROP001-002 · Mesh + reflective seam</p>
+              <span class="look-tag">Concept</span>
+            </div>
+          </article>
+          <article class="look-card">
+            <img src="https://images.unsplash.com/photo-1459749411175-04bf5296774d?auto=format&fit=crop&w=800&q=80" alt="" loading="lazy" />
+            <div class="look-body">
+              <h3>HORIZON SHORT</h3>
+              <p>RW-DROP001-003 · Mobility cut</p>
+              <span class="look-tag">Concept</span>
+            </div>
+          </article>
+          <article class="look-card">
+            <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80" alt="" loading="lazy" />
+            <div class="look-body">
+              <h3>NIGHT CAPE</h3>
+              <p>Accessory lane · LED pocket map</p>
+              <span class="look-tag">Sketch</span>
+            </div>
+          </article>
         </div>
-        <div class="collections-grid">
-            <div class="collection-card">
-                <div class="collection-image">🎆</div>
-                <div class="collection-body">
-                    <h3>Neon Dreams</h3>
-                    <p>UV-reactive tops and bottoms that glow under blacklight.</p>
-                    <div class="collection-meta">
-                        <span class="collection-price">From $49</span>
-                        <span class="collection-tag">NEW</span>
-                    </div>
-                </div>
-            </div>
-            <div class="collection-card">
-                <div class="collection-image">💫</div>
-                <div class="collection-body">
-                    <h3>LED Ready</h3>
-                    <p>Garments with built-in LED pockets and fiber optic threads.</p>
-                    <div class="collection-meta">
-                        <span class="collection-price">From $89</span>
-                        <span class="collection-tag">POPULAR</span>
-                    </div>
-                </div>
-            </div>
-            <div class="collection-card">
-                <div class="collection-image">🌊</div>
-                <div class="collection-body">
-                    <h3>Ocean Flow</h3>
-                    <p>Mermaid-inspired pieces with holographic sequins.</p>
-                    <div class="collection-meta">
-                        <span class="collection-price">From $69</span>
-                        <span class="collection-tag">LIMITED</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </section>
-    
-    <section class="section" id="about">
-        <div class="section-header">
-            <h2>Why Cherry?</h2>
-            <p>Built by a raver, for ravers</p>
+
+    <section id="system">
+      <div class="wrap">
+        <p class="kicker reveal">System</p>
+        <h2 class="title reveal">LILYPAD CAPABILITIES</h2>
+        <p class="sub reveal">What the studio actually optimizes for — not generic fashion claims.</p>
+
+        <div class="pad-grid">
+          <div class="lilypad reveal" style="--glow: rgba(0,255,209,0.15)">
+            <div class="pad-icon">◈</div>
+            <h3>UV REACTIVE</h3>
+            <p>Colorways and panel maps written for blacklight stages — contrast over daytime only.</p>
+            <div class="chips"><span class="chip">Blacklight</span><span class="chip">Panels</span></div>
+          </div>
+          <div class="lilypad reveal d1" style="--glow: rgba(255,107,157,0.15)">
+            <div class="pad-icon">⚡</div>
+            <h3>LED READY</h3>
+            <p>Pocket geometry and cable paths for EL / LED accessories — construction notes first.</p>
+            <div class="chips"><span class="chip">Pockets</span><span class="chip">Routes</span></div>
+          </div>
+          <div class="lilypad reveal d2" style="--glow: rgba(196,77,255,0.18)">
+            <div class="pad-icon">✦</div>
+            <h3>AI MOCKUPS</h3>
+            <p>Midjourney-calibrated prompts and package schemas so concepts stay reproducible.</p>
+            <div class="chips"><span class="chip">Prompts</span><span class="chip">Schema</span></div>
+          </div>
+          <div class="lilypad wide reveal" style="--glow: rgba(255,200,87,0.12)">
+            <div class="pad-icon">▤</div>
+            <h3>TECH-PACK HAND-OFF</h3>
+            <p>Drop protocol, measurement placeholders, and partner-readable packages under <code>collections/DROP001</code>. Samples and retail pricing wait on manufacturer path.</p>
+            <div class="chips"><span class="chip">Protocol</span><span class="chip">Partner</span></div>
+          </div>
+          <div class="lilypad wide reveal d1">
+            <div class="pad-icon">◎</div>
+            <h3>COMMERCE BRIDGE</h3>
+            <p>When assets are approved, listing packages route through Commerce AI — same Grove, one sales spine.</p>
+            <div class="chips"><span class="chip">Listings</span><span class="chip">commerce.lazermermicorn.com</span></div>
+          </div>
         </div>
-        <div class="features">
-            <div class="feature">
-                <div class="feature-icon">🎨</div>
-                <h3>Hand Designed</h3>
-                <p>Every pattern is original, created with love and attention to detail.</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">⚡</div>
-                <h3>LED Compatible</h3>
-                <p>Designed to work with LED accessories and EL wire.</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">🌙</div>
-                <h3>UV Reactive</h3>
-                <p>Fabrics that glow under blacklight for maximum impact.</p>
-            </div>
-        </div>
+      </div>
     </section>
-    
-    <footer id="contact">
-        <p>© 2026 <span class="brand">Cherry Rave Wear Studio</span>. Designed with 💜 in Hawaii.</p>
-    </footer>
+
+    <div class="photo-band" data-focus>
+      <img
+        src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1800&q=80"
+        alt=""
+        loading="lazy"
+        width="1800"
+        height="1000"
+      />
+      <div class="band-card reveal">
+        <h2>Movement is a material.</h2>
+        <p>Cuts prioritize range for long sets. Beauty is the side effect of systems that survive the night.</p>
+      </div>
+    </div>
+
+    <section id="colors">
+      <div class="wrap">
+        <p class="kicker reveal">Palette</p>
+        <h2 class="title reveal">NEON TIDE COLOR STORY</h2>
+        <p class="sub reveal">Five anchors. Expand later — never muddy the core.</p>
+        <div class="swatches reveal">
+          <div class="swatch" style="background: linear-gradient(160deg, #ff6b9d, #c44dff);"><span>Cherry Pink</span></div>
+          <div class="swatch" style="background: linear-gradient(160deg, #c44dff, #6b21a8);"><span>Lazer Violet</span></div>
+          <div class="swatch" style="background: linear-gradient(160deg, #00ffd1, #0891b2);"><span>Tide Teal</span></div>
+          <div class="swatch" style="background: linear-gradient(160deg, #ffc857, #f97316);"><span>Horizon Amber</span></div>
+          <div class="swatch" style="background: linear-gradient(160deg, #0e0814, #1a1028);"><span>Void Night</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="studio">
+      <div class="wrap">
+        <p class="kicker reveal">Honesty</p>
+        <h2 class="title reveal">STUDIO STATUS</h2>
+        <div class="truth reveal">
+          <p style="color: var(--text); font-weight: 600;">What is real vs. what is still in flight</p>
+          <ul>
+            <li><strong style="color:var(--text)">Real:</strong> DROP001 schema, Tide Bodysuit package template, Midjourney calibration, workflow + tech-pack templates, this brand surface.</li>
+            <li><strong style="color:var(--text)">Not real yet:</strong> Owned approved renders in <code>collections/DROP001/assets/</code>, manufacturer agreement, sample measurements, retail price.</li>
+            <li><strong style="color:var(--text)">Next:</strong> Generate → select → commit public-safe previews, then flip package status past mockup_draft.</li>
+          </ul>
+          <div class="btn-row" style="justify-content:flex-start; margin-top:1.5rem;">
+            <a class="btn btn-ghost" href="https://github.com/cyber-lazer-mermicorn/cherry-ravewear-studio" target="_blank" rel="noopener">Read STATUS.md</a>
+            <a class="btn btn-ghost" href="https://commerce.lazermermicorn.com" target="_blank" rel="noopener">Commerce spine</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="cta-band reveal">
+          <p class="kicker">Collaborate</p>
+          <h2 class="title" style="margin-bottom:0.75rem;">BUILD THE NEXT NIGHT WITH US</h2>
+          <p class="sub" style="margin:0 auto 1.5rem;">Partners, makers, and creative ops — open for tech-pack review when assets clear the honesty gate.</p>
+          <div class="btn-row">
+            <a class="btn btn-solid" href="mailto:cyber.lazer.mermicorn@gmail.com?subject=Ravewear%20studio">Email studio</a>
+            <a class="btn btn-ghost" href="https://lazermermicorn.com">Back to Grove</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Cherry Shanaley (Chan) / Cyber Lazer Mermicorn — Ravewear Studio.</p>
+    <p style="margin-top:0.35rem;">Designed with intent in Hawaii · <a href="https://ravewear.lazermermicorn.com">ravewear.lazermermicorn.com</a></p>
+  </footer>
+
+  <script>
+    (function () {
+      const nav = document.getElementById("nav");
+      const toggle = document.getElementById("navToggle");
+      const links = document.getElementById("navLinks");
+
+      toggle?.addEventListener("click", () => nav.classList.toggle("open"));
+      links?.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => nav.classList.remove("open"))
+      );
+
+      window.addEventListener(
+        "scroll",
+        () => nav.classList.toggle("scrolled", window.scrollY > 20),
+        { passive: true }
+      );
+
+      const focusEls = document.querySelectorAll("[data-focus]");
+      if ("IntersectionObserver" in window) {
+        const focusObs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              e.target.classList.toggle(
+                "is-focused",
+                e.isIntersecting && e.intersectionRatio > 0.35
+              );
+            });
+          },
+          { threshold: [0.2, 0.4, 0.6] }
+        );
+        focusEls.forEach((el) => focusObs.observe(el));
+
+        const revealObs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                revealObs.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+        );
+        document.querySelectorAll(".reveal").forEach((el) => revealObs.observe(el));
+      } else {
+        document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+        focusEls.forEach((el) => el.classList.add("is-focused"));
+      }
+
+      const sections = ["drop001", "system", "colors", "studio"]
+        .map((id) => document.getElementById(id))
+        .filter(Boolean);
+      const anchors = [...document.querySelectorAll(".nav-links a[href^='#']")];
+      const sectionObs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            const id = e.target.id;
+            anchors.forEach((a) => {
+              a.classList.toggle("active", a.getAttribute("href") === "#" + id);
+            });
+          });
+        },
+        { rootMargin: "-40% 0px -45% 0px", threshold: 0 }
+      );
+      sections.forEach((s) => sectionObs.observe(s));
+    })();
+  </script>
 </body>
 </html>

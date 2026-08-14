@@ -1,21 +1,26 @@
-# Status
+# Status — cherry-ravewear-studio
 
-**State:** BUILDING  
-**Last updated:** 2026-08-09
+**State:** BRAND SURFACE LIVE / DROP001 STILL MOCKUP DRAFT  
+**Last updated:** 2026-08-14  
+**URL:** https://ravewear.lazermermicorn.com
 
-## Real
-- Design package schema
-- DROP001 Neon Tide + RW-DROP001-001 Tide Bodysuit package + prompts
-- Midjourney calibration system
-- Workflow / drop protocol / tech-pack templates
-- Python modules + dashboard HTML + CI
+## Shipped this pass
 
-## Not real yet
-- **No `assets/` directory with approved public-safe renders** — package stays `mockup_draft` until assets are selected and committed
-- No manufacturer partner agreement
-- No sample measurements / retail price
+- Cinematic full-viewport hero with scroll-focus photography
+- Horizontal snap lookbook for DROP001 concepts
+- Lilypad capability grid (UV, LED, AI mockups, tech-pack, commerce bridge)
+- Neon Tide color story swatches
+- Honest studio truth panel (real vs not-real-yet)
+- Correct OG canonical → ravewear.lazermermicorn.com
+
+## Still true from before
+
+- Design package schema + DROP001 templates exist in repo
+- **No owned `collections/DROP001/assets/` approved renders** — packages stay `mockup_draft`
+- No manufacturer agreement / sample measurements / retail price
 
 ## Next
-1. Generate → select → commit public-safe previews under `collections/DROP001/assets/`
-2. Update package JSON `asset_path` fields and status when done
-3. Partner tech-pack read
+
+1. Commit public-safe preview assets under DROP001
+2. Flip package status past mockup_draft
+3. Partner tech-pack read + commerce listing package
